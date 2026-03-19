@@ -35,20 +35,19 @@ export default function MonthlyPage() {
                 <h2>目標支出</h2>
                 <ul>
                     {planExpenses.map((expense) => (
-                        <li key={expense.name}>
+                        <li key={expense.id}>
                             {expense.name}:{expense.amount.toLocaleString()}円
                         </li>
                     ))}
                 </ul>
             </section>
 
-
             {/* 実績支出 */}
             <section>
                 <h2>実績支出</h2>
                 <ul>
                     {actualExpenses.map((expense, index) => (
-                        <li key={expense.name}>
+                        <li key={expense.id}>
                             <label>
                                 {expense.name}:
                                 <input type="number" value={expense.amount} onChange={(e) => handleActualChange(index, e.target.value)} />
@@ -59,7 +58,7 @@ export default function MonthlyPage() {
 
             </section>
 
-            <button onSubmit={handleSubmit}></button>
+            <button onSubmit={handleSubmit}>登録</button>
         </div>
     )
 }

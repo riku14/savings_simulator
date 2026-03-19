@@ -11,6 +11,7 @@ export interface IncomeInput {
 
 /** 支出項目入力 */
 export interface ExpenseItemInput {
+    id: number
     name: string    // 項目名
     amount: number  // 金額
 }
