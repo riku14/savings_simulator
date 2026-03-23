@@ -58,7 +58,7 @@ export default function MonthlyTab() {
 
             </section>
 
-            <button onSubmit={handleSubmit}>登録</button>
+            <button onClick={handleSubmit}>登録</button>
         </div>
     )
 }
