@@ -6,6 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ユーザーから明示的な指示がない限り、以下は行わない：
 
+- 実装
 - 既存コードのリファクタリング・整理
 - コメント・docstring・型アノテーションの追加（変更していない箇所）
 - エラーハンドリング・バリデーションの追加（指示されていない箇所）
