@@ -30,65 +30,15 @@ npm run preview    # ビルド結果のプレビュー
 
 ---
 
-## アーキテクチャ概要
+## ドキュメント参照
 
-貯金シミュレータ。フロントのみで動作するフェーズから、バックエンド（Hono + PostgreSQL）を繋ぎ込む段階的な構成を想定している。
+設計・仕様・タスク管理はすべて `docs/` 配下に集約している。コード説明・実装・レビューの際は必ずこちらを参照すること。
 
-### 技術スタック
-
-| レイヤー | 技術 |
+| ファイル | 内容 |
 |---|---|
-| フロントエンド | Vite + React 18 + TypeScript + Tailwind v4 |
-| ルーティング | react-router-dom v6 |
-| バックエンド | Hono + Node.js（未実装） |
-| DB / ORM | PostgreSQL + Prisma（未実装） |
-
-### フロントエンド構成（`frontend/src/`）
-
-```
-pages/        ← 画面単位のコンポーネント（routes に 1:1 対応）
-components/   ← 再利用UIパーツ
-lib/
-  calc/       ← 計算ロジック（純粋関数、バックエンドに移行予定）
-  api/        ← バックエンドAPIクライアント（将来実装）
-  mock/       ← 開発用モックデータ
-types/
-  index.ts    ← アプリ全体の型定義（Input型・集計型・コンテナ型）
-```
-
-### ルーティング（`App.tsx`）
-
-| パス | ページ | 機能 |
-|---|---|---|
-| `/` | HomePage | リンク一覧 |
-| `/income` | IncomePage | 本業・副業手取り入力 → 合計計算 |
-| `/monthly` | MonthlyPage | 目標支出・実績支出の入力と比較 |
-
-### パスエイリアス
-
-`@/` は `frontend/src/` に解決される（`vite.config.ts` の `resolve.alias` で設定済み）。
-
-### 計算ロジックの場所
-
-- `lib/calc/income.ts` — `calcIncome(mainJobNet, sideJobNet): IncomeInput`
-- `lib/calc/monthly.ts` — `calcMonthlySummary(totalIncome, expenses[]): MonthlySummary`
-- `lib/calc/nisa.ts` — NISA複利計算（未実装）
-
-計算関数はすべて純粋関数。副作用なし。
-
-### 型定義の構造（`types/index.ts`）
-
-- `IncomeInput` — 収入入力値（本業・副業・合計手取り）
-- `ExpenseItemInput` — 支出1項目（name + amount）
-- `MonthlySummary` — 計算結果（収入合計・支出合計・余剰）
-- `MonthlyRecord` — 月次収支全体のコンテナ（income + planExpenses + actualExpenses）
-
-### モックデータ
-
-- `lib/mock/income.ts` — IncomeInput のサンプル値
-- `lib/mock/expenses.ts` — ExpenseItemInput[] のサンプル（8項目）
-
-バックエンド繋ぎ込み時にモックを `lib/api/` に置き換える設計。
+| [docs/要件定義書.md](./docs/要件定義書.md) | 機能要件・計算ロジック仕様 |
+| [docs/設計書.md](./docs/設計書.md) | 画面設計・データモデル・ディレクトリ構成・型定義 |
+| [docs/フェーズ計画.md](./docs/フェーズ計画.md) | フェーズ別タスク一覧・完了基準 |
 
 ---
 
