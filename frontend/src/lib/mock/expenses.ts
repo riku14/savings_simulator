@@ -1,14 +1,14 @@
-import { ExpenseItemInput } from "@/types";
+import { ExpenseCategory } from "@/types";
 
-const mockExpenses: ExpenseItemInput[] = [
-    { id: 1, name: '家賃', amount: 70000 },
-    { id: 2, name: '食費・日用品', amount: 40000 },
-    { id: 3, name: 'NISA積立', amount: 100000 },
-    { id: 4, name: '保険・年金', amount: 10000 },
-    { id: 5, name: '通信費', amount: 10000 },
-    { id: 6, name: '娯楽', amount: 30000 },
-    { id: 7, name: 'サブスク', amount: 10000 },
-    { id: 8, name: 'その他', amount: 30000 },
+const mockExpenses: ExpenseCategory[] = [
+    { id: 1, name: '家賃', targetAmount: 70000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 2, name: '食費・日用品', targetAmount: 40000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 3, name: 'NISA積立', targetAmount: 100000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 4, name: '保険・年金', targetAmount: 10000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 5, name: '通信費', targetAmount: 10000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 6, name: '娯楽', targetAmount: 30000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 7, name: 'サブスク', targetAmount: 10000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
+    { id: 8, name: 'その他', targetAmount: 30000, order: 5000, createdAt: new Date('2026-03-01T00:00:00.000Z'), updatedAt: new Date('2026-03-01T00:00:00.000Z') },
 ]
 
 export default mockExpenses

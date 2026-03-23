@@ -2,7 +2,7 @@ import { useState } from "react"
 import { IncomeInput } from "@/types"
 import { calcIncome } from "@/lib/calc/income"
 
-export default function IncomePage() {
+export default function IncomeTab() {
     const [income, setIncome] = useState<IncomeInput>({
         mainJobNet: 0,
         sideJobNet: 0,

@@ -1,16 +1,16 @@
 import mockExpenses from "@/lib/mock/expenses";
 import mockIncome from "@/lib/mock/income";
-import { ExpenseItemInput, IncomeInput } from "@/types";
+import { ExpenseCategory, IncomeInput } from "@/types";
 import { useState } from "react";
 
-export default function MonthlyPage() {
+export default function MonthlyTab() {
     const income: IncomeInput = mockIncome
 
-    const [planExpenses] = useState<ExpenseItemInput[]>(
+    const [planExpenses] = useState<ExpenseCategory[]>(
         mockExpenses.map(item => ({ ...item }))
     )
 
-    const [actualExpenses, setActualExpenses] = useState<ExpenseItemInput[]>(
+    const [actualExpenses, setActualExpenses] = useState<ExpenseCategory[]>(
         mockExpenses.map(item => ({ ...item, amount: 0 }))
     )
 
@@ -36,7 +36,7 @@ export default function MonthlyPage() {
                 <ul>
                     {planExpenses.map((expense) => (
                         <li key={expense.id}>
-                            {expense.name}:{expense.amount.toLocaleString()}円
+                            {expense.name}:{expense.targetAmount.toLocaleString()}円
                         </li>
                     ))}
                 </ul>
@@ -50,7 +50,7 @@ export default function MonthlyPage() {
                         <li key={expense.id}>
                             <label>
                                 {expense.name}:
-                                <input type="number" value={expense.amount} onChange={(e) => handleActualChange(index, e.target.value)} />
+                                <input type="number" value={expense.targetAmount} onChange={(e) => handleActualChange(index, e.target.value)} />
                             </label>
                         </li>
                     ))}
