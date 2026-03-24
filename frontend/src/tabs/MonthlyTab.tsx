@@ -1,71 +1,41 @@
-import mockExpenses from "@/lib/mock/expenses";
+import { mockExpenses, mockTargetExpenses } from "@/lib/mock/expenses";
 import mockIncome from "@/lib/mock/income";
-import { ExpenseCategory, IncomeInput } from "@/types";
-import { useState } from "react";
+import { ExpenseCategory, IncomeInput, MonthlyRecordInput } from "@/types";
 
 export default function MonthlyTab() {
+    // 収入モックデータ
     const income: IncomeInput = mockIncome
+    // 支出モックデータ
+    const targetExpenses: ExpenseCategory[] = mockTargetExpenses
+    // 支出モックデータ
+    const expenses: MonthlyRecordInput = mockExpenses
 
-    const [planExpenses] = useState<ExpenseCategory[]>(
-        mockExpenses.map(item => ({ ...item }))
+    // 目標支出合計
+    const totalTargetExpense = targetExpenses.reduce(
+        (sum, value) => sum + value.targetAmount, 0
     )
-
-    const [actualExpenses, setActualExpenses] = useState<ExpenseCategory[]>(
-        mockExpenses.map(item => ({ ...item, amount: 0 }))
+    // 支出合計(実績)
+    const totalExpense = expenses.actualExpenses.reduce(
+        (sum, value) => sum + value.amount, 0
     )
-
-    function handleActualChange(index: number, value: string) {
-        setActualExpenses(
-            actualExpenses.map((item, i) =>
-                i === index ? { ...item, amount: Number(value) } : item
-            )
-        )
-    }
-
-    function handleSubmit() {
-        console.log({ income, planExpenses, actualExpenses })
-    }
 
     return (
         <div>
             <h1>月次収支画面</h1>
 
             {/* 収入合計 */}
-            <section className="mb-2">
+            <div className="mb-2">
                 <p className="">収入合計：$ {income.totalNet}</p>
-            </section>
+            </div>
             {/* 支出合計 */}
+            <div className="mb-2">
+                <p className="">支出合計：$ {totalExpense}</p>
+                <p>{(totalTargetExpense > totalExpense) ? '-' : '+'} {totalTargetExpense - totalExpense}円 (目標金額：{totalTargetExpense})</p>
+            </div>
             {/* 月次余剰（ステータスも表示） */}
-
-            {/* 目標 */}
-            <section>
-                <h2>目標支出</h2>
-                <ul>
-                    {planExpenses.map((expense) => (
-                        <li key={expense.id}>
-                            {expense.name}:{expense.targetAmount.toLocaleString()}円
-                        </li>
-                    ))}
-                </ul>
-            </section>
-
-            {/* 実績支出 */}
-            <section>
-                <h2>実績支出</h2>
-                <ul>
-                    {actualExpenses.map((expense, index) => (
-                        <li key={expense.id}>
-                            <label>
-                                {expense.name}:
-                                <input type="number" value={expense.targetAmount} onChange={(e) => handleActualChange(index, e.target.value)} />
-                            </label>
-                        </li>
-                    ))}
-                </ul>
-
-            </section>
-
-            <button onClick={handleSubmit}>登録</button>
-        </div>
+            <div>
+                <p className="">余剰金額：$ {income.totalNet - totalExpense}</p>
+            </div>
+        </div >
     )
 }

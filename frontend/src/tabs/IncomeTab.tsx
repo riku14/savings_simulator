@@ -1,7 +1,6 @@
-import { useState } from "react"
-import type { Income, IncomeInput } from "@/types"
-import { calcIncome } from "@/lib/calc/income"
 import mockIncome from "@/lib/mock/income"
+import type { Income, IncomeInput } from "@/types"
+import { useState } from "react"
 
 export default function IncomeTab() {
     const { mainJobNet: mainMock, sideJobNet: sideMock, totalNet: totalMock }: Income = mockIncome
@@ -11,6 +10,14 @@ export default function IncomeTab() {
         sideJobNet: sideMock,
         totalNet: totalMock,
     })
+
+    function calcIncome(mainJobNet: number, sideJobNet: number): IncomeInput {
+        return {
+            mainJobNet,
+            sideJobNet,
+            totalNet: mainJobNet + sideJobNet,
+        }
+    }
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target
