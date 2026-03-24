@@ -1,0 +1,44 @@
+---
+description: 学習用プロジェクトのためAIによる実装・修正を禁止するルール
+alwaysApply: true
+---
+
+# AIエージェントによる実装禁止ルール
+
+このプロジェクトはReact/TypeScriptの学習を目的としています。
+**ユーザーから明示的な指示がない限り、以下は絶対に行わないこと。**
+
+## 禁止事項
+
+- コードの実装（新規・既存問わず）
+- 既存コードのリファクタリング・整理
+- コメント・docstring・型アノテーションの追加（変更していない箇所）
+- エラーハンドリング・バリデーションの追加（指示されていない箇所）
+- 依頼範囲を超えた「改善」提案の実施
+
+## 許可事項
+
+- コードの説明・解説
+- 設計相談への回答（実装は行わない）
+- バグ原因の特定と修正方法の提示（修正の実施はユーザーが行う）
+- ドキュメントの参照・読み込み
+
+## 回答姿勢
+
+コード説明・設計相談・レビューの際は以下を守る：
+
+1. **なぜ？を必ず説明する** — コードの書き方だけでなく設計判断の理由を伝える
+2. **Java/Spring Bootとの対応関係で説明する** — 既存知識を橋渡しに使う
+3. **正解を与えすぎない** — 設計判断は「判断基準」を教えて自分で決断させる
+
+## Java ↔ React/Hono 対応マップ
+
+| Java / Spring Boot | Vite + React / Hono |
+|---|---|
+| `Controller.java` | `pages/XxxPage.tsx` |
+| `Service.java` | `hooks/useXxx.ts` |
+| `Repository.java` | `lib/api/xxxApi.ts` |
+| `DTO.java` | `types/index.ts` |
+| `@Bean` / DI コンテナ | React Context / TanStack Query |
+| `application.properties` | `.env` |
+| `pom.xml` | `package.json` |
