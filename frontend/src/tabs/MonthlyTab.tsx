@@ -30,6 +30,13 @@ export default function MonthlyTab() {
         <div>
             <h1>月次収支画面</h1>
 
+            {/* 収入合計 */}
+            <section className="mb-2">
+                <p className="">収入合計：$ {income.totalNet}</p>
+            </section>
+            {/* 支出合計 */}
+            {/* 月次余剰（ステータスも表示） */}
+
             {/* 目標 */}
             <section>
                 <h2>目標支出</h2>
